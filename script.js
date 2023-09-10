@@ -96,3 +96,10 @@ const getUserCoordinates = () => {
 locationButton.addEventListener("click", getUserCoordinates);
 searchButton.addEventListener("click", getCityCoordinates);
 cityInput.addEventListener("keyup", e => e.key === "Enter" && getCityCoordinates());
+document.addEventListener("DOMContentLoaded", () => {
+// Coordinates for Halifax
+    const lat = 44.6488;
+    const lon = -63.5752;
+    getWeatherDetails("Halifax", lat, lon);
+  });
+  
