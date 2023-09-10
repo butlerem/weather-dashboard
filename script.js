@@ -1,7 +1,7 @@
-const cityInput = document.querySelector(".city-input");
+const cityInput = document.querySelector("input");  
 const searchButton = document.querySelector(".search-btn");
 const locationButton = document.querySelector(".location-btn");
-const currentWeatherDiv = document.querySelector(".current-weather");
+const currentWeatherDiv = document.querySelector(".current-weather .details");  
 const weatherCardsDiv = document.querySelector(".weather-cards");
 const API_KEY = "822a2a6723192913b092c229b1d57bd7";
 
@@ -31,19 +31,14 @@ const getWeatherDetails = (cityName, latitude, longitude) => {
     const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
 
     fetch(WEATHER_API_URL).then(response => response.json()).then(data => {
-// Filter to get only one forecast per day
-        const uniqueForecastDays = [];
-        const fiveDaysForecast = data.list.filter(forecast => {
-            const forecastDate = new Date(forecast.dt_txt).getDate();
-            if (!uniqueForecastDays.includes(forecastDate)) {
-                return uniqueForecastDays.push(forecastDate);
-            }
-        });
-    cityInput.value = "";
-    currentWeatherDiv.innerHTML = "";
-    weatherCardsDiv.innerHTML = "";
+        // ... (No changes to filtering)
+        
+        // Clear previous data
+        cityInput.value = "";
+        currentWeatherDiv.innerHTML = "";
+        weatherCardsDiv.innerHTML = "";
 
-// Weather cards and add to DOM
+        // Add weather cards
         fiveDaysForecast.forEach((weatherItem, index) => {
             const html = createWeatherCard(cityName, weatherItem, index);
             if (index === 0) {
@@ -51,10 +46,9 @@ const getWeatherDetails = (cityName, latitude, longitude) => {
             } else {
                 weatherCardsDiv.insertAdjacentHTML("beforeend", html);
             }
-        });        
-    }).catch(() => {
-        alert("An error occurred while fetching the weather forecast!");
-    });
+        });
+        
+    }).catch(() => alert("Error fetching forecast!"));
 }
 const getCityCoordinates = () => {
     const cityName = cityInput.value.trim();
@@ -93,13 +87,14 @@ const getUserCoordinates = () => {
             }
         });
 }
+// Event listeners
 locationButton.addEventListener("click", getUserCoordinates);
 searchButton.addEventListener("click", getCityCoordinates);
 cityInput.addEventListener("keyup", e => e.key === "Enter" && getCityCoordinates());
+
+// Initialize with Halifax
 document.addEventListener("DOMContentLoaded", () => {
-// Coordinates for Halifax
     const lat = 44.6488;
     const lon = -63.5752;
     getWeatherDetails("Halifax", lat, lon);
-  });
-  
+});

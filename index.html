@@ -5,16 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Weather Dashboard</title>
         <link rel="stylesheet" href="style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale1.0">
     </head>
     <body>
         <h1>Weather Dashboard</h1>
         <div class="container">
             <h3>Enter a City name</h3>
-            <input type="text" placeholder="E.g., New York, London, Tokyo"> 
+            <input type="text" placeholder="ottawa, montreal, ..."> 
             <button class="search-btn">Search</button>
             <div class="separator"></div>
             <button class="location-btn">Use Current Location</button>
@@ -22,12 +18,13 @@
         <div class="weather-data">
             <div class="current-weather">
                 <div class="details">
-                    <h2>_______ ( ______ )</h2>
-                    <h6>Temperature: __°C</h6>
-                    <h6>Wind: __ M/S</h6>
-                    <h6>Humidity: __%</h6>
-                  </div>
+                    <h2 id="default-city-name"></h2>
+                    <p id="default-temperature"></p>
+                    <p id="default-humidity"></p>
+                    <img id="default-weather-icon" alt="weather-icon">
+                </div>
             </div>
+        </div>        
             <div class="days-forecast">
                 <h2>5-Day Forecast</h2>
                 <ul class="weather-cards">
