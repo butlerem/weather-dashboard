@@ -65,31 +65,23 @@ var generateImage = function (WeatherConditions) {
     return WeatherImage;
 };
 
-//generates the next five day forecast
+//generates 5 day forecast
 var getFiveDays = function (weather) {
-    //saves array of objects (7 day forecast) to a varriable
     var daily = weather.daily
-
-    //selects container where five days will go 
     var fiveDay = document.querySelector('#five-day')
-
     fiveDay.innerHTML = ''
-    //creates five div cards to contain weather information
     for (let i = 0; i < daily.length - 3; i++) {
-        //formating for the next five dates
         var dateHeadingContent = FutureCheck(i);
         var dailyWeatherConditions = daily[i].weather[0].id;
         var dailyTemp = daily[i].temp.day;
         var dailyWind = daily[i].wind_speed;
         var dailyHummidity = daily[i].humidity;
-
         var dayDivEl = document.createElement('div');
         var dateHeadingEl = document.createElement('h3');
         var ulEl = document.createElement('ul');
         var daytempLiEl = document.createElement('li');
         var daywindLiEl = document.createElement('li');
         var dayhummidityiEl = document.createElement('li');
-
         var dailyIcon = generateImage(dailyWeatherConditions);
 
         dayDivEl.setAttribute('class', 'card col-auto bg-info m-1 border border-dark');
