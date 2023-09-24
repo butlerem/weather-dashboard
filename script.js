@@ -34,6 +34,7 @@ const getWeatherDetails = (cityName, latitude, longitude) => {
         const uniqueForecastDays = [];
         const fiveDaysForecast = data.list.filter(forecast => {
             const forecastDate = new Date(forecast.dt_txt).getDate();
+            saveToHistory(cityName);
             if (!uniqueForecastDays.includes(forecastDate)) {
                 return uniqueForecastDays.push(forecastDate);
             }
@@ -67,6 +68,7 @@ const getCityCoordinates = () => {
     }).catch(() => {
         alert("An error occurred while fetching the coordinates!");
     });
+    displaySearchHistory();
 }
 const getUserCoordinates = () => {
     navigator.geolocation.getCurrentPosition(
@@ -80,6 +82,7 @@ const getUserCoordinates = () => {
             }).catch(() => {
                 alert("An error occurred while fetching the city name!");
             });
+            displaySearchHistory();
         },
         error => { 
             if (error.code === error.PERMISSION_DENIED) {
@@ -90,6 +93,29 @@ const getUserCoordinates = () => {
         });
 }
 
+const saveToHistory = (cityName) => {
+    let history = localStorage.getItem("searchHistory");
+    history = history ? JSON.parse(history) : [];
+    if (!history.includes(cityName)) {
+      history.push(cityName);
+    }
+    localStorage.setItem("searchHistory", JSON.stringify(history));
+  };
+
+  const displaySearchHistory = () => {
+    const historyDiv = document.querySelector(".search-history");
+    let history = localStorage.getItem("searchHistory");
+    history = history ? JSON.parse(history) : [];
+    historyDiv.innerHTML = "";
+    history.forEach((city) => {
+      const cityDiv = document.createElement("div");
+      cityDiv.textContent = city;
+      cityDiv.addEventListener("click", () => getCityCoordinates(city));
+      historyDiv.appendChild(cityDiv);
+    });
+  };
+
+displaySearchHistory();
 locationButton.addEventListener("click", getUserCoordinates);
 searchButton.addEventListener("click", getCityCoordinates);
 cityInput.addEventListener("keyup", e => e.key === "Enter" && getCityCoordinates());
