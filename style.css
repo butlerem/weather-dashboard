@@ -1,13 +1,16 @@
-*{
+/* Import Google font - Open Sans */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
 }
 body {
-  background: #ebf7ff;
+  background: #E3F2FD;
 }
 h1 {
-  background: #a2abcc;
+  background: #5372F0;
   font-size: 1.75rem;
   text-align: center;
   padding: 18px 0;
@@ -29,17 +32,17 @@ h1 {
   padding: 0 17px;
   margin: 10px 0 20px 0;
   border-radius: 4px;
-  border: 1px solid #cccccc;
+  border: 1px solid #ccc;
 }
 .weather-input input:focus {
   padding: 0 16px;
-  border: 2px solid #666c83;
+  border: 2px solid #5372F0;
 }
 .weather-input .separator {
   height: 1px;
   width: 100%;
   margin: 25px 0;
-  background: #b9c0b7;
+  background: #BBBBBB;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,24 +64,24 @@ h1 {
   border-radius: 4px;
   font-size: 1rem;
   color: #fff;
-  background: #98a6e0;
+  background: #5372F0;
   transition: 0.2s ease;
 }
 .weather-input .search-btn:hover {
-  background: #9aaae7;
+  background: #2c52ed;
 }
 .weather-input .location-btn {
-  background: #8295a7;
+  background: #6C757D;
 }
 .weather-input .location-btn:hover {
-  background: #97abbe;
+  background: #5c636a;
 }
 .weather-data {
   width: 100%;
 }
 .weather-data .current-weather {
   color: #fff;
-  background: #539cf0;
+  background: #5372F0;
   border-radius: 5px;
   padding: 20px 70px 20px 20px;
   display: flex;
@@ -117,7 +120,7 @@ h1 {
   padding: 18px 16px;
   list-style: none;
   width: calc(100% / 5);
-  background: #8288a8;
+  background: #6C757D;
   border-radius: 5px;
 }
 .weather-cards .card h3 {
